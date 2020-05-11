@@ -126,8 +126,8 @@
 
                 <p>
                     Return types are also strict and function arguments MUST HAVE a type declaration. The PHP example above allowed a null or string
-                    return type whereas Go is strict in the sense that the return type can ONLY be a string. Go's approach to the above PHP code above is
-                    clear and defined:
+                    return type whereas Go is strict in the sense that the return type can ONLY be one defined type. Go's approach to the above PHP code above is
+                    defined as:
                 </p>
 
                 <script src="https://gist.github.com/joesweeny/071540975209ef346f8f7da7058e0272.js"></script>
@@ -139,8 +139,8 @@
 
                 <p>
                     My personal approach to PHP has always been to adopt a strict approach using explicit types. I often utilise static
-                    analysis libraries such as PHPStan to enforce this approach on my projects so for Go to enforce strict typing out of the box was
-                    not a complete culture shock to me.
+                    analysis libraries such as <a href="https://github.com/phpstan/phpstan" target="_blank">PHPStan</a> to enforce this approach on my projects
+                    so for Go to enforce strict typing out of the box was not a complete culture shock to me.
                 </p>
 
                 <p>
@@ -150,10 +150,38 @@
                     somewhat be reduced.
                 </p>
 
+                <h2 class="section-heading">Class vs Struct</h2>
 
-                <h2 class="section-heading">Classes vs Structs</h2>
+                <p>
+                    Classes in PHP are blueprints of objects that contain properties in the form of internally scoped variables with class behaviour defined in methods.
+                    The Go alternative is called a struct (short for structure). A struct is a user defined type that contains a collection of data fields with declared
+                    data types. Comparative examples in PHP and Go are below:
+                </p>
 
-                <h2 class="section-heading">Method Declarations</h2>
+                <script src="https://gist.github.com/joesweeny/0d6f6b7e28024ce67536728c84849866.js"></script>
+
+                <script src="https://gist.github.com/joesweeny/3d43bf0a4f60bcab811916ada810b39e.js"></script>
+
+                <p>
+                    PHP enforces classes to be instantiated with their required properties whereas struct types is Go can be instantiated in
+                    a variety of ways.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/68b9b05a570323fbc9dff443c90b5eb1.js"></script>
+
+                <p>
+                    Methods can be added to struct types using a method receiver.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/c2ed32b677c86c300c70d12a41a8ed68.js"></script>
+
+                <p>In Go terminology the above example reads as <i>the <strong>FullName</strong> method has a receiver type of <strong>Person</strong>.</i></p>
+
+                <blockquote class="blockquote">
+
+                </blockquote>
+
+                <h2 class="section-heading">Public vs Private</h2>
 
                 <h2 class="section-heading">Packages vs Namespaces</h2>
 
