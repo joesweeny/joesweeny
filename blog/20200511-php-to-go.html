@@ -95,10 +95,59 @@
                     into Go development that little bit smoother.
                 </p>
 
-                <h2 class="section-heading">Strict Typing</h2>
+                <h2 class="section-heading">Dynamic vs Static Typing</h2>
+                <p>
+                    PHP is a dynamic programming language although since PHP 7.0 I've seen it described as a <i>gradually</i> typed language.
+                    Meaning on the whole PHP is a dynamic language with some static type features. Users of PHP have the flexibility to adhere
+                    to strict conventions such as function argument type hinting and declaration of return types however on the flip side users
+                    can opt not to conform to any strict typing convention and still have a fully functional application.
+                </p>
 
                 <p>
-                    
+                    PHP allows developers to dynamically declare variables of a certain type and then override the same variable with a different
+                    type.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/f2c343d589c3054faa15979fbc423be6.js"></script>
+
+                <p>
+                    Even with strict typing set PHP still allows variables to be assigned with a new type inside a function. The below providing an example
+                    of a type hinted function with a return type declaration and a clear defined docblock:
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/bc1c5ed64aa450da78f3b5276fb4bfae.js"></script>
+
+                <p>
+                    Go on the other hand is a statically typed language with strict typing enforced. Variables are assigned a type at the time of
+                    declaration and once assigned cannot be converted or cast to another type. Attempting to do so will result in a compiler error.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/de7a5495b6dcfdb66b4cdbd873462635.js"></script>
+
+                <p>
+                    Return types are also strict and function arguments MUST HAVE a type declaration. The PHP example above allowed a null or string
+                    return type whereas Go is strict in the sense that the return type can ONLY be a string. Go's approach to the above PHP code above is
+                    clear and defined:
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/071540975209ef346f8f7da7058e0272.js"></script>
+
+                <p>
+                    Go's strict typing convention provides the over riding feeling of <i>what you see is what you get</i>. It reduces the need for additional
+                    type checking inside functions and provides an additional level of robustness and confidence sometimes lost in weaker typed systems.
+                </p>
+
+                <p>
+                    My personal approach to PHP has always been to adopt a strict approach using explicit types. I often utilise static
+                    analysis libraries such as PHPStan to enforce this approach on my projects so for Go to enforce strict typing out of the box was
+                    not a complete culture shock to me.
+                </p>
+
+                <p>
+                    On the other hand if you feel more comfortable using PHP to it's more flexible capabilities the adoption of a stricter approach is
+                    something you will need to come to terms with. The inclusion of typed properties in PHP 7.4 brings PHP a step closer to the conventions
+                    Go promotes so should PHP developers choose to utilise this convention in their projects the barrier to entry from PHP to Go could
+                    somewhat be reduced.
                 </p>
 
 
