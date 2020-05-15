@@ -55,16 +55,25 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="post-preview">
+                <div>
+                    <img class="img-fluid" src="../img/phpgo.jpg" alt="">
+                </div>
+                <div class="post-preview" style="margin-top: 5px">
                     <h2 class="post-title">
                         From PHP to Go
                     </h2>
                     <p class="post-meta">Posted by
                         <a href="https://twitter.com/iamjoesweeny" target="_blank">Joe Sweeny</a>
-                        on May 20, 2020</p>
+                        on May , 2020</p>
                 </div>
 
-                <hr>
+                <hr />
+
+                <div style="text-align: center; color: grey">
+                    <small>
+                        At the time of writing the most recent PHP version is 7.4 and Go 1.13
+                    </small>
+                </div>
 
                 <p>
                     Up until November 2018 my commercial development experience consisted of predominantly PHP with a splatter of Vue JS thrown in.
@@ -73,9 +82,9 @@
                 </p>
 
                 <p>
-                    I felt comfortable with server side development so should I focus my attention on learning front end or should I learn another
-                    server side language? I was advised by someone who I held in high regard to learn another server side language. Doing so would not
-                    only add another string to my bow it would improve me as a software developer and improve the way I write PHP.
+                    I felt comfortable with server side development so should I focus my attention on front end development or should I learn another
+                    server side language? I was advised to learn another server side language. Doing so would not
+                    only add another string to my bow it would also improve me as a software developer and improve the way I write PHP.
                 </p>
 
                 <p>
@@ -84,22 +93,38 @@
                 </p>
 
                 <p>
-                    I dug into blog posts, YouTube videos and various other literature but I found the barrier to entry quite steep coming from my
-                    PHP background. I often found myself looking for PHP to Go comparison resources to help reduce this barrier so I've put this post
-                    together for anyone who finds themselves in the same position I was in.
+                    I delved into blog posts, YouTube videos, Udemy courses and various other literature but I found the barrier to entry quite steep coming from my
+                    PHP background. I often found myself looking for <q>PHP to Go</q> comparison resources to help reduce the barrier so I've put this post
+                    together for anyone who finds themselves in a similar position I was in.
                 </p>
 
                 <p>
                     The Go community and ecosystem is extremely good at providing documentation, examples and tutorials especially to get you off the ground.
-                    The aim of this post is to dive into common programming concepts and provide a clear comparison to help PHP developers making the leap
-                    into Go development that little bit smoother.
+                    The aim of this post is to dive into common programming concepts and provide a high level view with comparable examples to help PHP developers
+                    making the leap into Go development that little bit smoother.
                 </p>
 
-                <h2 class="section-heading">Dynamic vs Static Typing</h2>
+                <p>
+                    <strong>Contents:</strong>
+                </p>
+
+                <ul>
+                    <li><a href="#ONE">Dynamic vs Static Typing</a></li>
+                    <li><a href="#TWO">Class vs Struct</a></li>
+                    <li><a href="#THREE">Function/Method Declarations</a></li>
+                    <li><a href="#FOUR">Namespaces vs Packages</a></li>
+                    <li><a href="#FIVE">Visibility</a></li>
+                    <li><a href="#SIX">Interfaces</a></li>
+                    <li><a href="#SEVEN">Error vs Exception Handling</a></li>
+                    <li><a href="#EIGHT">Dependency Management</a></li>
+                    <li><a href="#NINE">Testing</a></li>
+                </ul>
+
+                <h2 class="section-heading"><a id="ONE">Dynamic vs Static Typing</a></h2>
                 <p>
                     PHP is a dynamic programming language although since PHP 7.0 I've seen it described as a <i>gradually</i> typed language.
-                    Meaning on the whole PHP is a dynamic language with some static type features. Users of PHP have the flexibility to adhere
-                    to strict conventions such as function argument type hinting and declaration of return types however on the flip side users
+                    Meaning on the whole PHP is a dynamic language with some static type features. Developers using PHP have the flexibility to adhere
+                    to strict conventions such as function argument type hinting and the declaration of return types however on the flip side users
                     can opt not to conform to any strict typing convention and still have a fully functional application.
                 </p>
 
@@ -111,8 +136,8 @@
                 <script src="https://gist.github.com/joesweeny/f2c343d589c3054faa15979fbc423be6.js"></script>
 
                 <p>
-                    Even with strict typing set PHP still allows variables to be assigned with a new type inside a function. The below providing an example
-                    of a type hinted function with a return type declaration and a clear defined docblock:
+                    Even with strict typing declared PHP still allows variables to be assigned with a new type inside a function. Below provides an example
+                    of a strictly typed function declared although strict typing is not fully adhered to within the function:
                 </p>
 
                 <script src="https://gist.github.com/joesweeny/bc1c5ed64aa450da78f3b5276fb4bfae.js"></script>
@@ -138,7 +163,7 @@
                 </p>
 
                 <p>
-                    My personal approach to PHP has always been to adopt a strict approach using explicit types. I often utilise static
+                    My personal approach to PHP has always been to adopt a strict approach using explicitly declared types. I often utilise static
                     analysis libraries such as <a href="https://github.com/phpstan/phpstan" target="_blank">PHPStan</a> to enforce this approach on my projects
                     so for Go to enforce strict typing out of the box was not a complete culture shock to me.
                 </p>
@@ -150,7 +175,7 @@
                     somewhat be reduced.
                 </p>
 
-                <h2 class="section-heading">Class vs Struct</h2>
+                <h2 class="section-heading"><a id="TWO">Class vs Struct</a></h2>
 
                 <p>
                     Classes in PHP are blueprints of objects that contain properties in the form of internally scoped variables with class behaviour defined in methods.
@@ -163,41 +188,298 @@
                 <script src="https://gist.github.com/joesweeny/3d43bf0a4f60bcab811916ada810b39e.js"></script>
 
                 <p>
-                    PHP enforces classes to be instantiated with their required properties whereas struct types is Go can be instantiated in
+                    PHP enforces classes to be instantiated with their required properties whereas struct types in Go can be instantiated in
                     a variety of ways.
                 </p>
 
                 <script src="https://gist.github.com/joesweeny/68b9b05a570323fbc9dff443c90b5eb1.js"></script>
 
+                <h2 class="section-heading"><a id="THREE">Function/Method Declarations</a></h2>
+
                 <p>
-                    Methods can be added to struct types using a method receiver.
+                    Functions are first class citizens in Go, the same as PHP. Functions are central to the Go ecosystem with an extremely familiar feel
+                    to PHP functions with one key difference, multiple return types.
+                </p>
+
+                <p>
+                    By all means PHP developers have the option of being <q>creative</q>and bundling multiple return values into a single returned array to
+                    semi-replicate the functionality Go provides or alternatively returning a value object containing multiple values. However the out of the
+                    box capabilities Go provides is a clearer more elegant and readable solution.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/21cf5299118c33a03cea542bb8e1e728.js"></script>
+
+                <p>
+                    A function declared <strong>INSIDE</strong> a class in PHP is called a method. In Go a method is a function with a special <i>receiver</i>
+                    argument. Go supports methods defined <strong>ON</strong> types.
                 </p>
 
                 <script src="https://gist.github.com/joesweeny/c2ed32b677c86c300c70d12a41a8ed68.js"></script>
 
-                <p>In Go terminology the above example reads as <i>the <strong>FullName</strong> method has a receiver type of <strong>Person</strong>.</i></p>
+                <p>
+                    In Go terminology the above example reads as <i>the <strong>FullName</strong> method has a receiver type of <strong>Person</strong>.</i>
+                </p>
 
-                <blockquote class="blockquote">
+                <p>
+                    A common use case in Go applications is to return the expected type(s) from a function accompanied
+                    by a nullable <i>error</i> type (more on this in the Error vs Exception Handling section below).
+                </p>
 
+                <h2 class="section-heading"><a id="FOUR">Namespaces vs Packages</a></h2>
+
+                <p>
+                    PHP uses namespaces as a way of encapsulating items that also assists in avoiding naming collisions. Namespaces also provide
+                    a level of organisation to a PHP codebase with name spacing conventions generally adopting a directory structure. To utilise
+                    functionality residing in a different class the <strong>use</strong> keyword is used to import a required class, interface or function.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/df2af6ea3f1d37763a19fb418e030a10.js"></script>
+
+                <p>
+                    Go utilises a modular system that organises logical boundaries in your code into a <strong>packages</strong>. Functionality from external packages
+                    are imported via an import statement.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/f071b2af576014937a03449da0a53865.js"></script>
+
+                <p>
+                    If you've got experience with Python (or Javascript to a certain extent) the modular package based system will be familiar. Coming
+                    directly from a PHP background will require a mentality shift in the way you approach your project structure and organise your code.
+                </p>
+
+                <p>
+                    Dealing with packages over namespaces was a particular hurdle I had to overcome. I approach my PHP generally from a layered architecture
+                    mindset creating bounded contexts and clear logical boundaries between layers using the namespace initiative to my advantage.
+                    I found the mindset shift a particular barrier especially when it came to package naming although I found this fantastic
+                    <a href="https://www.youtube.com/watch?v=MzTcsI6tn-0" target="_blank" class="highlight">talk by Brian Ketelsen</a> as my barrier breaker.
+                </p>
+
+                <h2 class="section-heading"><a id="FIVE">Visibility</a></h2>
+
+                <p>
+                    The visibility of a property in PHP be it a method, constant or variable can be defined by prefixing the declaration with the keyword public,
+                    protected or private. Class members declared public are accessible from anywhere, private members may only be accessed by the class that
+                    defines them and protected members utilise PHPs notion of inheritance as they can be accessed by the declaring class itself and by inheriting
+                    parent classes.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/37a154b44587a25df8925405beee48e8.js"></script>
+
+                <p>
+                    The Go approach to visibility adopts a somewhat more simplistic approach. Go does not support inheritance instead opting for composition,
+                    embedding and interfaces to support code reuse and polymorphism. Visibility is reduced to either <i>public</i> or <i>private</i>.
+                    The visibility of a type, variable, function or method in Go is declared public with a leading capital letter and deemed private with a leading
+                    lowercase letter.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/b809f10b59608199f075d428b5342b97.js"></script>
+
+                <p>
+                    In the above example the <strong>SayHello</strong> and <strong>PrintHello</strong> functions are declared within the <strong>greeter</strong>
+                    package. External code consuming the greeter package will receive the <strong>SayHello</strong> and <strong>PrintHello</strong> as exported
+                    functions and have the authority to use them as they are declared public with a capital letter.
+                </p>
+
+                <p>
+                    The <strong>hello</strong> variable however is a private variable and unexported as it is declared with a lowercase letter. External code
+                    importing withe <i>greeter</i> package will not have access to the hello variable. However one key aspect to remember is the <strong>hello</strong>
+                    variable IS accessible by other files within the <i>greeter</i> package. This here typifies Go's modular approach.
+                </p>
+
+                <p>
+                    PHP provides encapsulation on a class basis whereas Go achieves encapsulation via its package system.
+                </p>
+
+                <h2 class="section-heading"><a id="SIX">Interfaces<a/></h2>
+
+                <p>
+                    Interfaces are at the very core of good software design providing a defined contract of <i>what</i> a specific class, type or component can do
+                    leaving the <i>how</i> to the specific implementations. PHP provides an interface policy where interfaces are implemented <i>explicitly</i>.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/536b44c70ed385de07caace3efa34415.js"></script>
+
+                <p>
+                    An interface is declared and a concrete implementation in the form of a class <strong>implements</strong> the methods declared on the interface.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/a07b15493e8dab0f1a8fa4e69df65f2c.js"></script>
+
+                <p>
+                    The <strong>implements</strong> keyword provides an explicit binding between the concrete <strong>LocalStorage</strong> class and
+                    <strong>Storage</strong> interface. Go also provides interface support albeit <i>implicitly</i>.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/be26c9c45ce813a470f570119ad0ad72.js"></script>
+
+                <p>
+                    An interface in Go is two things, firstly it is a set of defined methods and secondly it is a type. Using the above as an example, the implicit binding occurs when <i>any</i>
+                    type defines a <strong>Save</strong> method with an argument of <strong>File</strong> therefore satisfying the interface declaration. The <strong>LocalStorage</strong>
+                    and <strong>AwsStorage</strong> types below do exactly this therefore satisfying the Storage interface albeit implicitly without the need for a formal
+                    implements declaration.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/254c60876d786428332212fa0e146c88.js"></script>
+
+                <p>
+                    The following Go proverb originally attributed to one of the creators of Go, Rob Pike, is always good to remember before you write your next interface in Go:
+                </p>
+
+                <blockquote>
+                    The bigger the interface, the weaker the abstraction
                 </blockquote>
 
-                <h2 class="section-heading">Public vs Private</h2>
+                <h2 class="section-heading"><a id="SEVEN">Error vs Exception Handling</a></h2>
 
-                <h2 class="section-heading">Packages vs Namespaces</h2>
+                <p>
+                    Application errors occur and the application consumer needs to be made aware in a constructive way. PHP handles error by
+                    utilising an exception model that is fairly similar to other programming languages.
+                </p>
 
-                <h2 class="section-heading">Dependency Management</h2>
+                <p>
+                    Code is surrounded by a <i>try</i>/<i>catch</i> block and handled accordingly. PHP affords the developer the ability to throw an
+                    exception leaving the responsibility of the consuming class to either catch it or in turn throw again. Generally common exceptions are caught
+                    and handled by a global exception handler.
+                </p>
 
-                <h2 class="section-heading">Interfaces</h2>
+                <script src="https://gist.github.com/joesweeny/80406adf3a4ea60fe158dfa2823efd6c.js"></script>
 
-                <h2 class="section-heading">Exception Handling</h2>
+                <p>
+                    Go does not provide the conventional try/catch paradigm to handling errors. Errors in Go are a type and are returned from a function
+                    as a standard return value. By Go convention errors are the last returned value from a function with a <strong>nil</strong> value
+                    returned if no such error occurred.
+                </p>
 
-                <h2 class="section-heading">Testing</h2>
+                <script src="https://gist.github.com/joesweeny/a258701b5333ca40e5d711c3d7359f36.js"></script>
 
-                <h2 class="section-heading">Memory Allocation</h2>
+                <p>
+                    Error handling in Go is extremely verbose as each error returned from a function <i>NEEDS</i> to be checked for a nil value before
+                    proceeding. Stepping into Go you will see the following pattern <strong>A LOT</strong> :
+                </p>
 
-                <h2 class="section-heading">Standard Library</h2>
+                <blockquote>
+                    if err != nil { <i>Do something</i> }
+                </blockquote>
 
-                <h2 class="section-heading">Resources</h2>
+                <p>
+                    Go in general provides a mind shift towards more forward up front thinking and the error handling system is a good example of this.
+                    The language's design and conventions encourage you to check for errors where they occur as opposed to throwing and sometimes catching
+                    exceptions.
+                </p>
+
+                <p>
+                    Coming into Go from PHP error handling feels extremely verbose and often repetitive. This may feel uncomfortable to begin with however
+                    I'd argue that proper error handling is paramount to building robust and dependable software and Go enforces this by design.
+                </p>
+
+                <h2 class="section-heading"><a id="EIGHT">Dependency Management</a></h2>
+
+                <p>
+                    Managing dependencies manually in any programming language can be extremely cumbersome and an outright headache to deal with.
+                    PHP is spoiled with the <a href="https://getcomposer.org/" target="_blank">Composer</a> dependency management tool. By its own
+                    definition...
+                </p>
+
+                <blockquote>
+                    Composer is not a package manager in the same sense as Yum or Apt are. Yes, it deals with "packages" or libraries, but it manages
+                    them on a per-project basis, installing them in a directory (e.g. vendor) inside your project.
+                </blockquote>
+
+                <p>
+                    Composer is baked into the PHP ecosystem. It is mature and a vital tool in any PHP developers toolkit. Dependency management in Go is another story.
+                </p>
+
+                <p>
+                    Until recently dependency management in Go has been a bone of contention until the introduction of Go Modules, however the debate continues to
+                    rumble on. Initially Go had no dependency management tool and executing <strong>go get</strong> along with the fully qualified import path of
+                    the required dependency was the only way to download a dependency for your project pulling the latest code from the master branch of a repository.
+                </p>
+
+                <p>
+                    Third party tools such as <a href="https://github.com/golang/dep" target="_blank" class="highlight">dep</a> were introduced along with concepts such as vendoring.
+                    To date they have not gained the same popularity and support that Composer has gained in PHP which prompted the Go team into developing their own
+                    solution.
+                </p>
+
+                <p>
+                    Step forward Go Modules. Go Modules is a built in dependency management system that makes dependency version information explicit and easier to
+                    manage. Dependencies are declared within a <strong>go.mod</strong> file similarly to how dependencies are declared within a <strong>composer.json</strong>
+                    file in PHP.
+                </p>
+
+                <p>
+                    Go versions 1.11 and 1.12 included preliminary support for modules with version 1.13 using module mode by default. Go modules are here for the
+                    foreseeable future and is considered the go to dependency management solution for your Go projects.
+                </p>
+
+                <h2 class="section-heading"><a id="NINE">Testing</a></h2>
+
+                <p>
+                    Testing is at the backbone of any well built and robust application. Testing our code can spare precious debugging time and hours
+                    of headache and PHP developers are spoilt for choice with an abundance of third party libraries. PHPUnit is the best known testing framework
+                    with Codeception, Behat and PHPSpec notable mentions.
+                </p>
+
+                <p>
+                    Testing in PHP is generally performed by extending a base class, creating dependant classes via concrete implementations or mocks and performing
+                    assertions to determine our code is behaving well and executing exactly as we expect it to.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/3d3e65fbc89ea1ee449c924f2beea957.js"></script>
+
+                <p>
+                    PHP provides testing capabilities courtesy of third party libraries. Go provides testing out of the box. Go has an inbuilt testing
+                    framework with preferred testing conventions.
+                </p>
+
+                <script src="https://gist.github.com/joesweeny/d52663ae29d30e359dff2402d85e7334.js"></script>
+
+                <p>
+                    Tests are executed using the <strong>go test</strong> command. Go's approach to testing is simplistic however with the language being
+                    strongly typed and statically compiled it makes mocking harder to achieve and far less flexible.
+                </p>
+
+                <p>
+                    Test assertions by convention are not the norm. The style of the above test along with table driven tests are considered more popular conventions.
+                    If you feel more at home with explicit test assertions the <a href="https://github.com/stretchr/testify" target="_blank" class="highlight">stretchr/testify</a>
+                    third party library is a fantastic tool that provides powerful support for assertions as well as a mocking library.
+                </p>
+
+                <p>
+                    I found <a href="https://quii.gitbook.io/learn-go-with-tests/" target="_blank" class="highlight">Learn Go with Tests</a> an extremely powerful resource that
+                    immensely helped me in solidify Go's testing approach and conventions.
+                </p>
+
+                <h2 class="section-heading">Conclusion</h2>
+
+                <p>
+                    I hope the above has provided a better insight into Go for those with a PHP hat on. This post was designed to provide a high level overview with comparable
+                    examples to help those PHP developers looking to add Go as another string to their bow. This post has barely scratched the surface of Go's capabilities such as its
+                    in built concurrency model, powerful memory management by design and much more. I'd strongly advise exploring the following resources to help setting you
+                    on your way into the world of Go:
+                </p>
+
+                <ul>
+                    <li>
+                        <a href="https://gobyexample.com/" target="_blank">Go by Example</a>
+                    </li>
+                    <li>
+                        <a href="https://tour.golang.org/" target="_blank">A Tour of Go</a>
+                    </li>
+                </ul>
+
+                <p>
+                    Go is an incredibly simple yet powerful language that I enjoy using immensely. Go by design promotes simplicity over complexity and readable code over
+                    potentially hard to follow abstractions. Compared to PHP, Go is a completely different language and environment however
+                    I've personally found developing in Go has improved my overall approach to software development and improved the way I write PHP.
+                </p>
+
+                <hr>
+
+                <p>
+                    I hope you enjoyed reading this. If you did or even if you didn't I'd appreciate any feedback
+                    <a href="https://twitter.com/iamjoesweeny" class="highlight" target="_blank">@iamjoesweeny</a>
+                </p>
 
             </div>
         </div>
